@@ -9,8 +9,11 @@ makeCacheMatrix <- function(x = matrix()) {
 
   # Set initial matrix
   set <- function(y) {
-    x <<- y
-    inverse <<- NULL
+    # Don't invalidate the data if new matrix is the same as current
+    if (!identical(x, y)) {
+      x <<- y
+      inverse <<- NULL
+    }
   }
 
   # Get initial matrix
